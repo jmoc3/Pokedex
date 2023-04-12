@@ -5,7 +5,6 @@ export const inputContext = React.createContext<string>('');
 export const inputToggleContext = React.createContext<React.Dispatch<React.SetStateAction<string>>|null>(null);
 
 export const LayoutApp = ({children}:PropsWithChildren):JSX.Element =>{
-    
   const [inputText, setInputText] = useState<string>('')
     
   return(

@@ -32,7 +32,11 @@ const colorDiccionary:Record<string,string[]> = {
 export const PokemonCard = ({id,name,type, ...imgProps}:functionProps):JSX.Element =>{
   const inputText = useContext<string>(inputContext)
   return(
-    <div className={`group flex flex-col gap-2 p-5 border border-black rounded ${colorDiccionary[type][0]} ${colorDiccionary[type][1]} ${name.includes(inputText)?'':'hidden'} cursor-pointer ease-in-out duration-500 `} key={id}>
+    <div className={`group flex relative flex-col gap-2 p-5 border border-black rounded ${colorDiccionary[type][0]} ${colorDiccionary[type][1]} ${name.includes(inputText)?'':'hidden'} ease-in-out duration-500 `} key={id}>
+      <div className="info cursor-pointer absolute -z-10 right-0 group-hover:translate-x-12 ease-in-out duration-500 ">
+        <div className={`pokeLogo p-1 border border-black rounded  w-10 h-auto ${colorDiccionary[type][0]}`}><img className="w-full" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png" alt="" /></div>
+        <span>info</span>
+      </div>
       <div className="topCard grid justify-items-center gap-2.5" >
       <span>#{`${id} ${name}`}</span>
         <div className={`imgContainer rounded-full w-24 border border-zinc-400 ${ colorDiccionary[type][0]} ease-in-out duration-500 group-hover:overflow-visible`}>

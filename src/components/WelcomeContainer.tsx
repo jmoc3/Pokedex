@@ -3,8 +3,6 @@ import type{ChangeEventHandler} from 'react'
 import { inputContext, inputToggleContext } from "./LayoutApp"
 
 export const WelcomeContainer = () =>{
-    
-  const inputText = useContext(inputContext)
   const setInputText = useContext(inputToggleContext)
   
   const catchInputValue:ChangeEventHandler<HTMLInputElement>= (e:ChangeEvent<HTMLInputElement>):void =>{
