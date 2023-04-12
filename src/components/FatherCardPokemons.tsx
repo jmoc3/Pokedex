@@ -1,7 +1,6 @@
-import { PropsWithChildren } from "react"
-
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { PokemonCard } from './PokemonCard'
+import { inputContext } from './LayoutApp'
 
 type PokemonStats = {
     abilities: Array<Record<string,(number|boolean|Pokemon)>>;
@@ -29,8 +28,8 @@ type PokemonStats = {
     url:string
   }
 
-export const FatherCardPokemon = () : JSX.Element=>{
 
+  export const FatherCardPokemon = () : JSX.Element=>{
     const [homePokemons,setHomePokemons] = useState<PokemonStats[]>([])
 
     const pokemons = async():Promise<void>=>{
@@ -41,15 +40,13 @@ export const FatherCardPokemon = () : JSX.Element=>{
     const allPokemons = pokemons.map(async (e:Pokemon,index:number):Promise<void>=>{
       const pokemonPromise = await fetch(e.url)
         const pokemon = await pokemonPromise.json()
-        return pokemon
+        return pokemon 
     })
 
     const allPokemonDescription = await Promise.all(allPokemons)
     const firstPokemonsDescription = allPokemonDescription.filter((e:any)=>e!=undefined)
 
     setHomePokemons(firstPokemonsDescription)
-    /* 
-    const pokemon = pokemons[rn.int(0,100)] */
   }
   
   useEffect(()=>{

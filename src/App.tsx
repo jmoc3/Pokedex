@@ -1,15 +1,19 @@
 import './styles/App.css'
 
+import { LayoutApp } from './components/LayoutApp'
 import { WelcomeContainer } from './components/WelcomeContainer'
 import { FatherCardPokemon } from './components/FatherCardPokemons'
 
-function App():JSX.Element{
 
+function App():JSX.Element{
+  
   return (
-    <div className="App w-full h-screen flex flex-col justify-evenly items-center bg-cyan-100">
-      <WelcomeContainer/>
-      <FatherCardPokemon/>
-    </div>
+    <LayoutApp>
+      <div className="App w-full h-screen flex flex-col justify-evenly items-center bg-cyan-100">
+        <WelcomeContainer/>
+        <FatherCardPokemon/>
+      </div>
+    </LayoutApp>
   )
 }
 

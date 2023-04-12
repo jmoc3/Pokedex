@@ -1,5 +1,6 @@
-import { ImgHTMLAttributes } from "react"
-import { BiCaretLeft, BiCaretRight } from "react-icons/bi";
+import {useContext} from 'react'
+import type{ ImgHTMLAttributes } from "react"
+import { inputContext } from "./LayoutApp"
 
 type cardProps = {
     id:string;
@@ -29,15 +30,16 @@ const colorDiccionary:Record<string,string[]> = {
 }
 
 export const PokemonCard = ({id,name,type, ...imgProps}:functionProps):JSX.Element =>{
-    return(
-        <div className={`group flex flex-col gap-3 p-5 border border-black rounded ${colorDiccionary[type][0]} ${colorDiccionary[type][1]}  cursor-pointer ease-in-out duration-500 `} key={id}>
-              <div className="topCard grid justify-items-center gap-1" >
-              <span>#{`${id} ${name}`}</span>
-                <div className={`imgContainer rounded-full w-24 border border-zinc-400 ${ colorDiccionary[type][0]} ease-in-out duration-500 group-hover:overflow-visible`}>
-                  <img {...imgProps} className="group-hover:scale-150 ease-in-out duration-500"/>
-                </div> 
-              </div>
-              <span className='w-full text-center'>{}</span>
-            </div>
+  const inputText = useContext<string>(inputContext)
+  return(
+    <div className={`group flex flex-col gap-2 p-5 border border-black rounded ${colorDiccionary[type][0]} ${colorDiccionary[type][1]} ${name.includes(inputText)?'':'hidden'} cursor-pointer ease-in-out duration-500 `} key={id}>
+      <div className="topCard grid justify-items-center gap-2.5" >
+      <span>#{`${id} ${name}`}</span>
+        <div className={`imgContainer rounded-full w-24 border border-zinc-400 ${ colorDiccionary[type][0]} ease-in-out duration-500 group-hover:overflow-visible`}>
+          <img {...imgProps} className="group-hover:scale-150 ease-in-out duration-500"/>
+        </div> 
+      </div>
+      <span className='w-full text-center'>{}</span>
+    </div>
     )
 }
