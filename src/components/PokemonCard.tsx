@@ -1,14 +1,10 @@
-import {useContext} from 'react'
 import type{ ImgHTMLAttributes } from "react"
+import type { PokemonStats } from './FatherCardPokemons'
+import { useContext } from 'react'
 import { inputContext } from "./LayoutApp"
+import { PokeLogo } from './PokeLogo'
 
-type cardProps = {
-    id:string;
-    name:string;
-    type:string;
-}
-
-type functionProps = cardProps & ImgHTMLAttributes<HTMLImageElement>
+type CardProps = Pick<PokemonStats,'name'|'types'|'stats'>  & ImgHTMLAttributes<HTMLImageElement>
 
 const colorDiccionary:Record<string,string[]> = {
   'grass':['bg-emerald-200','hover:bg-green-400'],
@@ -29,17 +25,15 @@ const colorDiccionary:Record<string,string[]> = {
   
 }
 
-export const PokemonCard = ({id,name,type, ...imgProps}:functionProps):JSX.Element =>{
+export const PokemonCard = ({id,name,types,stats, ...imgProps}:CardProps):JSX.Element =>{
   const inputText = useContext<string>(inputContext)
+
   return(
-    <div className={`group flex relative flex-col gap-2 p-5 border border-black rounded ${colorDiccionary[type][0]} ${colorDiccionary[type][1]} ${name.includes(inputText)?'':'hidden'} ease-in-out duration-500 `} key={id}>
-      <div className="info cursor-pointer absolute -z-10 right-0 group-hover:translate-x-12 ease-in-out duration-500 ">
-        <div className={`pokeLogo p-1 border border-black rounded  w-10 h-auto ${colorDiccionary[type][0]}`}><img className="w-full" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png" alt="" /></div>
-        <span>info</span>
-      </div>
+    <div className={`group flex relative flex-col gap-2 p-5 border border-black rounded ${colorDiccionary[types[0].type.name][0]} ${colorDiccionary[types[0].type.name][1]} ${name.includes(inputText)?'':'hidden'} ease-in-out duration-500 `} key={id}>
+      <PokeLogo stats={stats} color={colorDiccionary[types[0].type.name][0]}/>
       <div className="topCard grid justify-items-center gap-2.5" >
       <span>#{`${id} ${name}`}</span>
-        <div className={`imgContainer rounded-full w-24 border border-zinc-400 ${ colorDiccionary[type][0]} ease-in-out duration-500 group-hover:overflow-visible`}>
+        <div className={`imgContainer rounded-full w-24 border border-zinc-400 ${ colorDiccionary[types[0].type.name][0]} ease-in-out duration-500 group-hover:overflow-visible`}>
           <img {...imgProps} className="group-hover:scale-150 ease-in-out duration-500"/>
         </div> 
       </div>
