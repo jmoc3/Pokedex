@@ -12,7 +12,7 @@ const colorDiccionary:Record<string,string[]> = {
   'water':['bg-cyan-200','bg-blue-400','hover:bg-blue-400'],
   'bug':['bg-lime-200','bg-lime-400','hover:bg-lime-400'],
   'normal':['bg-slate-200','bg-gray-400','hover:bg-gray-400'],
-  'electric':['bg-amber-200','yellow-400','hover:bg-yellow-400'],
+  'electric':['bg-amber-200','bg-yellow-400','hover:bg-yellow-400'],
   'ground':['bg-amber-400','bg-amber-800','hover:bg-amber-800'],
   'poison':['bg-violet-200','bg-violet-400','hover:bg-violet-400'],
   'fairy':['bg-violet-200','bg-violet-400','hover:bg-violet-400'],
