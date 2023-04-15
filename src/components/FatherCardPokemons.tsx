@@ -2,24 +2,13 @@ import { useEffect, useState } from 'react'
 import { PokemonCard } from './PokemonCard'
 
 export type PokemonStats = {
-    abilities: Array<Record<string,(number|boolean|Stat)>>;
-    base_experience:number;
-    forms:Array<Stat>;
-    game_indices:Array<Record<string,(number|Stat)>>;
-    height:number;
-    held_items:Array<Record<string,(Stat|Array<Record<string,(number|Stat)>>)>>;
     id:number;
-    is_default:boolean;
-    location_area_encounters:string
-    moves:Array<Stat|Array<Record<string,(number|Stat)>>>;
     name:string;
     order:number
-    past_types:Array<Record<string,(Stat|Array<Record<string,number|Stat>>)>>;
     species:Stat;
     sprites:Record<string,string>;
     stats: Array<Record<string,(number|Stat)>>;  
     types:Array<Record<string,(Stat)>>;
-    weight:number;
   } 
   
 export type Stat = {
@@ -43,7 +32,6 @@ export const FatherCardPokemon = () : JSX.Element=>{
 
     const allPokemonDescription = await Promise.all(allPokemons)
     const firstPokemonsDescription = allPokemonDescription.filter((e:any)=>e!=undefined)
-    console.log(firstPokemonsDescription)
     setHomePokemons(firstPokemonsDescription)
   }
 
@@ -52,10 +40,10 @@ export const FatherCardPokemon = () : JSX.Element=>{
   },[])
 
   return(
-    <div className='Pokemons z-10 grid grid-cols-6 gap-y-8 h-1/2 w-4/5 p-7 justify-items-center '>
+    <div className='Pokemons z-10 grid grid-cols-6 max-1600:grid-cols-4  gap-y-8 h-1/2 w-4/5 p-7 justify-items-center '>
       {
         homePokemons.map((pokemon) =>(
-              <PokemonCard  key={pokemon.id} src={pokemon.sprites.front_default} id={pokemon.id.toString()} name={pokemon.name} types={pokemon.types} stats={pokemon.stats}/>
+              <PokemonCard  key={pokemon.id} src={pokemon.sprites.front_default} id={pokemon.id.toString()} name={pokemon.name} types={pokemon.types} species={pokemon.species} stats={pokemon.stats}/>
         ))
       }
     </div>
